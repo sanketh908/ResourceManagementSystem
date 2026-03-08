@@ -14,6 +14,7 @@ public class Filemodul {
     @Column(nullable = false)
     private String filetype;
     @Lob
+    @Column(nullable = false)
     private byte[] content;
 
 
