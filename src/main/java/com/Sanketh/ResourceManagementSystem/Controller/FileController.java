@@ -20,10 +20,11 @@ public class FileController {
         fileService.addFile(file);
 
     }
-    @
-    @GetMapping("")
-    public ResponseEntity<String> getFile("get/{id}") {
 
+    @GetMapping("get/{id}")
+    public ResponseEntity<String> getFile(@PathVariable int id) {
+        Filemodul filemodul = fileService.getFile(id);
+        ResponseEntity.ok().contentType()
 
     }
 
