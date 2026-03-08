@@ -1,7 +1,9 @@
 package com.Sanketh.ResourceManagementSystem.Entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 public class Filemodul {
     @Id
