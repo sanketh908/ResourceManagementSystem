@@ -24,4 +24,8 @@ public class FileService {
         }
 
     }
+    public Filemodul getFile(int id){
+        return filerepo.findById(id).orElseThrow(() -> new RuntimeException("File not found with id: " + id));
+
+    }
 }
