@@ -1,12 +1,23 @@
 package com.Sanketh.ResourceManagementSystem.Controller;
 
+import com.Sanketh.ResourceManagementSystem.Entity.User;
+import com.Sanketh.ResourceManagementSystem.Enums.Roles;
+import com.Sanketh.ResourceManagementSystem.Service.UserService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/home")
 public class Home {
+    private final UserService userService;
+    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+    public Home(UserService userService) {
+        this.userService = userService;
+    }
+
     @GetMapping()
     public String home() {
         return "Welcome to the Resource Management System!";
@@ -15,6 +26,14 @@ public class Home {
     @GetMapping("/about")
     public String about() {
         return "This is a simple resource management system built with Spring Boot.";
+    }
+    @PostMapping("/login")
+    public String login(@RequestBody User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRoles(Roles.ROLE_USER);
+
+
+
     }
 }
 
