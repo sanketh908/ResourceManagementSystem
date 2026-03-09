@@ -33,7 +33,8 @@ public class Home {
     public ResponseEntity<?> login(@RequestBody User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(Roles.ROLE_USER);
-         new ResponseEntity<>(userService.saveUser(user),HttpStatus.OK);
+        User usersave=userService.saveUser(user);
+        return new ResponseEntity<>(usersave,HttpStatus.OK);
 
 
     }
