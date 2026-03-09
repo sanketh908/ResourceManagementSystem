@@ -2,6 +2,7 @@ package com.Sanketh.ResourceManagementSystem.Security;
 
 import com.Sanketh.ResourceManagementSystem.Entity.User;
 import com.Sanketh.ResourceManagementSystem.Repository.Userrepo;
+import org.jspecify.annotations.NullMarked;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,6 +15,7 @@ private final Userrepo userrepo;
     }
 
     @Override
+    @NullMarked
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user =userrepo.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Username not found"));
         return new UserPrincipal(user);
