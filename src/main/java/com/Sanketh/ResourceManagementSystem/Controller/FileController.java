@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/files")
 public class FileController {
@@ -30,6 +32,19 @@ public class FileController {
                 .contentType(MediaType.parseMediaType(filemodul.getFiletype()))
                 .body(filemodul.getContent());
 
+    }
+    @GetMapping("/getall")
+    public ResponseEntity<List<Filemodul>> getAllFiles() {
+        List<Filemodul> files = fileService.getAllFile();
+        return new ResponseEntity<>(files, HttpStatus.OK);
+    }
+    @GetMapping("/download/{id}")
+    public ResponseEntity<byte[]> downloadFile(@PathVariable int id) {
+        Filemodul filemodul = fileService.getFile(id);
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(filemodul.getFiletype()))
+                .header("Content-Disposition", "attachment; filename=\"" + filemodul.getFilename() + "\"")
+                .body(filemodul.getContent());
     }
 
 }

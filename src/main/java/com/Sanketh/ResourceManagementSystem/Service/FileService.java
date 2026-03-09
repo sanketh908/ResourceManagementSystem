@@ -5,6 +5,8 @@ import com.Sanketh.ResourceManagementSystem.Repository.Filerepo;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @Service
 public class FileService {
    private final Filerepo filerepo;
@@ -27,5 +29,8 @@ public class FileService {
     public Filemodul getFile(int id){
         return filerepo.findById(id).orElseThrow(() -> new RuntimeException("File not found with id: " + id));
 
+    }
+    public List<Filemodul> getAllFile(){
+      return   filerepo.findAll();
     }
 }
