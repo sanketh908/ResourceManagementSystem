@@ -33,7 +33,9 @@ public class FileService {
     public List<Filemodul> getAllFile(){
       return   filerepo.findAll();
     }
-    public Filemodul getFilerepo(String filename){
+
+
+    public Filemodul getFileByName(String filename) {
         return filerepo.findByFilename(filename);
     }
 }

@@ -52,7 +52,7 @@ public class UserController {
     }
     @GetMapping("/getByName/{name}")
     public ResponseEntity<Filemodul> getFileByName(@PathVariable String name) {
-        Filemodul filemodul=fileService.
+        Filemodul filemodul=fileService.getFileByName(name);
     }
 
 }

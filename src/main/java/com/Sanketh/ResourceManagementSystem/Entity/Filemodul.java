@@ -2,6 +2,7 @@ package com.Sanketh.ResourceManagementSystem.Entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 
@@ -18,7 +19,6 @@ public class Filemodul {
     @Lob
     @Column(nullable = false)
     private byte[] content;
-
 
 
 }
