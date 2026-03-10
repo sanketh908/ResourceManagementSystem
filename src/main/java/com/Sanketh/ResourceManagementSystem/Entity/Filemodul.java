@@ -18,9 +18,7 @@ public class Filemodul {
     @Lob
     @Column(nullable = false)
     private byte[] content;
-    @ManyToOne
-    @JoinColumn(name = "files")
-    private Filemodul filemodul;
+
 
 
 }
