@@ -6,6 +6,7 @@ import com.Sanketh.ResourceManagementSystem.Security.UserPrincipal;
 import com.Sanketh.ResourceManagementSystem.Service.FileService;
 import com.Sanketh.ResourceManagementSystem.Service.UserService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -53,6 +54,15 @@ public class UserController {
     @GetMapping("/getByName/{name}")
     public ResponseEntity<Filemodul> getFileByName(@PathVariable String name) {
         Filemodul filemodul=fileService.getFileByName(name);
+        return new   ResponseEntity<>(filemodul, HttpStatus.OK);
+    }
+    @GetMapping("/download/{id}")
+    public ResponseEntity<byte[]> downloadFile(@PathVariable int id) {
+        Filemodul filemodul = fileService.getFile(id);
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(filemodul.getFiletype()))
+                .header("Content-Disposition", "attachment; filename=\"" + filemodul.getFilename() + "\"")
+                .body(filemodul.getContent());
     }
 
 }
