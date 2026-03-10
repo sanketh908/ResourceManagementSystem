@@ -19,4 +19,6 @@ public class User {
     private String email;
     @Enumerated(EnumType.STRING)
     private Roles roles;
+    @OneToMany(mappedBy ="files",cascade = CascadeType.ALL)
+    private List<Filemodul> filemoduls;
 }
