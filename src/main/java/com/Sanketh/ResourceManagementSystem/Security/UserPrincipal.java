@@ -28,7 +28,9 @@ private  final User user;
     public @Nullable String getPassword() {
         return user.getPassword();
     }
-
+    public Integer getuserId() {
+        return user.getUserId();
+    }
     @Override
     @NullMarked
     public String getUsername() {
