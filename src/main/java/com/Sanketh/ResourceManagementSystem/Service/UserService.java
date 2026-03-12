@@ -4,12 +4,15 @@ import com.Sanketh.ResourceManagementSystem.Entity.User;
 import com.Sanketh.ResourceManagementSystem.Enums.Roles;
 import com.Sanketh.ResourceManagementSystem.Repository.Userrepo;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
 public class UserService {
+    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(15);
 private final Userrepo userRepository;
 
     public UserService(Userrepo userRepository) {
