@@ -15,13 +15,14 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
         @Bean
         SecurityFilterChain securityFilterChain(HttpSecurity http) {
+
             http
                     .csrf(AbstractHttpConfigurer::disable)
                     .authorizeHttpRequests(auth -> auth
                             .requestMatchers("/home").permitAll()
                             .requestMatchers("/file/**").hasRole("ADMIN")
                             .requestMatchers("/userfiles/**").hasRole("USER")
-                            .anyRequest().permitAll()
+                            .anyRequest().authenticated()
                     )
                     .httpBasic(Customizer.withDefaults());
 
