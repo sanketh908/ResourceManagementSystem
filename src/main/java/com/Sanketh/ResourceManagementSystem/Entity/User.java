@@ -4,7 +4,7 @@ import com.Sanketh.ResourceManagementSystem.Enums.Roles;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.List;
+
 @Data
 @Entity
 public class User {

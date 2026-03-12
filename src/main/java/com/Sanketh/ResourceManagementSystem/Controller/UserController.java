@@ -1,6 +1,6 @@
 package com.Sanketh.ResourceManagementSystem.Controller;
 
-import com.Sanketh.ResourceManagementSystem.Entity.Filemodul;
+import com.Sanketh.ResourceManagementSystem.Entity.Filemon;
 import com.Sanketh.ResourceManagementSystem.Entity.User;
 import com.Sanketh.ResourceManagementSystem.Security.UserPrincipal;
 import com.Sanketh.ResourceManagementSystem.Service.FileService;
@@ -8,7 +8,6 @@ import com.Sanketh.ResourceManagementSystem.Service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Objects;
 
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 
 @RestController
 @RequestMapping("/usersfiles")
@@ -41,24 +40,24 @@ public class UserController {
 
     }
     @GetMapping("/getall")
-    public ResponseEntity<List<Filemodul>> getFiles() {
-       List<Filemodul> files= fileService.getAllFile();
+    public ResponseEntity<List<Filemon>> getFiles() {
+       List<Filemon> files= fileService.getAllFile();
        return new  ResponseEntity<>(files, HttpStatus.OK);
 
     }
     @GetMapping("/getById/{id}")
-    public ResponseEntity<Filemodul> getFileById(@PathVariable int  id) {
-        Filemodul filemodul= fileService.getFile(id);
+    public ResponseEntity<Filemon> getFileById(@PathVariable int  id) {
+        Filemon filemodul= fileService.getFile(id);
         return new  ResponseEntity<>(filemodul, HttpStatus.OK);
     }
     @GetMapping("/getByName/{name}")
-    public ResponseEntity<Filemodul> getFileByName(@PathVariable String name) {
-        Filemodul filemodul=fileService.getFileByName(name);
+    public ResponseEntity<Filemon> getFileByName(@PathVariable String name) {
+        Filemon filemodul=fileService.getFileByName(name);
         return new   ResponseEntity<>(filemodul, HttpStatus.OK);
     }
     @GetMapping("/download/{id}")
     public ResponseEntity<byte[]> downloadFile(@PathVariable int id) {
-        Filemodul filemodul = fileService.getFile(id);
+        Filemon filemodul = fileService.getFile(id);
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(filemodul.getFiletype()))
                 .header("Content-Disposition", "attachment; filename=\"" + filemodul.getFilename() + "\"")

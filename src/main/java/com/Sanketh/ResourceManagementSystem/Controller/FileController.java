@@ -1,6 +1,6 @@
 package com.Sanketh.ResourceManagementSystem.Controller;
 
-import com.Sanketh.ResourceManagementSystem.Entity.Filemodul;
+import com.Sanketh.ResourceManagementSystem.Entity.Filemon;
 import com.Sanketh.ResourceManagementSystem.Entity.User;
 import com.Sanketh.ResourceManagementSystem.Enums.Roles;
 import com.Sanketh.ResourceManagementSystem.Service.FileService;
@@ -25,27 +25,27 @@ public class FileController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Filemodul> addFile(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<Filemon> addFile(@RequestParam("file") MultipartFile file) {
       return new ResponseEntity<>(fileService.addFile(file), HttpStatus.OK);
 
     }
 
     @GetMapping("get/{id}")
     public ResponseEntity<byte []> getFile(@PathVariable int id) {
-        Filemodul filemodul = fileService.getFile(id);
+        Filemon filemodul = fileService.getFile(id);
        return ResponseEntity.status(HttpStatus.OK)
                 .contentType(MediaType.parseMediaType(filemodul.getFiletype()))
                 .body(filemodul.getContent());
 
     }
     @GetMapping("/getall")
-    public ResponseEntity<List<Filemodul>> getAllFiles() {
-        List<Filemodul> files = fileService.getAllFile();
+    public ResponseEntity<List<Filemon>> getAllFiles() {
+        List<Filemon> files = fileService.getAllFile();
         return new ResponseEntity<>(files, HttpStatus.OK);
     }
     @GetMapping("/download/{id}")
     public ResponseEntity<byte[]> downloadFile(@PathVariable int id) {
-        Filemodul filemodul = fileService.getFile(id);
+        Filemon filemodul = fileService.getFile(id);
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(filemodul.getFiletype()))
                 .header("Content-Disposition", "attachment; filename=\"" + filemodul.getFilename() + "\"")
@@ -58,7 +58,7 @@ public class FileController {
     }
     @PostMapping("deleteByName/{name}")
     public ResponseEntity<String> deleteFileByName(@PathVariable String name) {
-        Filemodul filemodul = fileService.getFileByName(name);
+        Filemon filemodul = fileService.getFileByName(name);
         if (filemodul != null) {
             fileService.deleteFile(filemodul.getId());
             return new ResponseEntity<>("File deleted successfully", HttpStatus.OK);
