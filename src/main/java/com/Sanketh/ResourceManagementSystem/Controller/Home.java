@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/home")
 public class Home {
     private final UserService userService;
-    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
 
     public Home(UserService userService) {
         this.userService = userService;
@@ -31,8 +31,6 @@ public class Home {
     }
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRoles(Roles.ROLE_USER);
         User usersave=userService.saveUser(user);
         return new ResponseEntity<>(usersave,HttpStatus.OK);
 

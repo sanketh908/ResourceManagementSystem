@@ -1,7 +1,10 @@
 package com.Sanketh.ResourceManagementSystem.Controller;
 
 import com.Sanketh.ResourceManagementSystem.Entity.Filemodul;
+import com.Sanketh.ResourceManagementSystem.Entity.User;
+import com.Sanketh.ResourceManagementSystem.Enums.Roles;
 import com.Sanketh.ResourceManagementSystem.Service.FileService;
+import com.Sanketh.ResourceManagementSystem.Service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +17,11 @@ import java.util.List;
 @RequestMapping("/files")
 public class FileController {
     private final FileService fileService;
+    private final UserService userService;
 
-    public FileController(FileService fileService) {
+    public FileController(FileService fileService, UserService userService) {
         this.fileService = fileService;
+        this.userService = userService;
     }
 
     @PostMapping("/add")
@@ -46,10 +51,26 @@ public class FileController {
                 .header("Content-Disposition", "attachment; filename=\"" + filemodul.getFilename() + "\"")
                 .body(filemodul.getContent());
     }
-    @GetMapping("delete/{id}")
+    @PostMapping("delete/{id}")
     public ResponseEntity<String> deleteFile(@PathVariable int id) {
         fileService.deleteFile(id);
         return new ResponseEntity<>("File deleted successfully", HttpStatus.OK);
+    }
+    @PostMapping("deleteByName/{name}")
+    public ResponseEntity<String> deleteFileByName(@PathVariable String name) {
+        Filemodul filemodul = fileService.getFileByName(name);
+        if (filemodul != null) {
+            fileService.deleteFile(filemodul.getId());
+            return new ResponseEntity<>("File deleted successfully", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("File not found", HttpStatus.NOT_FOUND);
+        }
+    }
+    @PostMapping("/addAdmin")
+    public ResponseEntity<User> addAdmin(@RequestBody User user) {
+       user.setRoles(Roles.ROLE_ADMIN);
+       User newuser= userService.saveUser(user);
+       return new ResponseEntity<>(newuser, HttpStatus.OK);
     }
 
 }

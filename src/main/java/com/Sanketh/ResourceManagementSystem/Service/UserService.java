@@ -1,6 +1,7 @@
 package com.Sanketh.ResourceManagementSystem.Service;
 
 import com.Sanketh.ResourceManagementSystem.Entity.User;
+import com.Sanketh.ResourceManagementSystem.Enums.Roles;
 import com.Sanketh.ResourceManagementSystem.Repository.Userrepo;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,8 @@ private final Userrepo userRepository;
     }
     public User saveUser(User user)
     {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRoles(Roles.ROLE_USER);
         return userRepository.save(user);
     }
     public  User getUserById(Integer id)
