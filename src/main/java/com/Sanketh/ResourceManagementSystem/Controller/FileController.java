@@ -46,5 +46,10 @@ public class FileController {
                 .header("Content-Disposition", "attachment; filename=\"" + filemodul.getFilename() + "\"")
                 .body(filemodul.getContent());
     }
+    @GetMapping("delete/{id}")
+    public ResponseEntity<String> deleteFile(@PathVariable int id) {
+        fileService.deleteFile(id);
+        return new ResponseEntity<>("File deleted successfully", HttpStatus.OK);
+    }
 
 }

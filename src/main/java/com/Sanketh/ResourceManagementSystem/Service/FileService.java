@@ -33,6 +33,9 @@ public class FileService {
     public List<Filemodul> getAllFile(){
       return   filerepo.findAll();
     }
+    public void deleteFile(int id){
+        filerepo.deleteById(id);
+    }
 
 
     public Filemodul getFileByName(String filename) {
