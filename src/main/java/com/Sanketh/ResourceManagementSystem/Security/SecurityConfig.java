@@ -3,6 +3,7 @@ package com.Sanketh.ResourceManagementSystem.Security;
 import com.Sanketh.ResourceManagementSystem.Repository.Userrepo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -17,15 +18,14 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
         @Bean
         SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
             http
                     .csrf(AbstractHttpConfigurer::disable)
                     .authorizeHttpRequests(auth -> auth
-                            .requestMatchers("/", "/home/**").permitAll()
                             .requestMatchers("/file/**").hasRole("ADMIN")
                             .requestMatchers("/userfiles/**").hasRole("USER")
-                            .anyRequest().authenticated()
-                    ).formLogin(AbstractAuthenticationFilterConfigurer::permitAll);
+                            .anyRequest().permitAll()
+                    )
+                    .httpBasic(Customizer.withDefaults());
 
             return http.build();
         }
