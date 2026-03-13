@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Service
 public class UserService {
-    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(15);
+    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
 private final Userrepo userRepository;
 
     public UserService(Userrepo userRepository) {

@@ -1,6 +1,6 @@
 package com.Sanketh.ResourceManagementSystem.Enums;
 
 public enum Roles {
-    ADMIN,
-    USER
+    ROLES_ADMIN,
+    ROLES_USER
 }
