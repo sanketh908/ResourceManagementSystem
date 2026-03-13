@@ -17,7 +17,7 @@ public class FileService {
     public Filemon addFile(MultipartFile file){
         try {
             Filemon Filemon = new Filemon();
-            Filemon.setFilename(file.getOriginalFilename());
+            Filemon.setFilename(System.currentTimeMillis()+"-"+file.getOriginalFilename());
             Filemon.setFiletype(file.getContentType());
             Filemon.setContent(file.getBytes());
             return filerepo.save(Filemon);
