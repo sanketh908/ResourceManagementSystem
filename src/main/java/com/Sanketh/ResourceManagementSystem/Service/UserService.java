@@ -18,6 +18,12 @@ private final Userrepo userRepository;
     public UserService(Userrepo userRepository) {
         this.userRepository = userRepository;
     }
+    public User saveAdmin(User user)
+    {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRoles(Roles.ROLE_ADMIN);
+        return userRepository.save(user);
+    }
     public User saveUser(User user)
     {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
