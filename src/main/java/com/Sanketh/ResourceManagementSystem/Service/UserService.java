@@ -21,7 +21,7 @@ private final Userrepo userRepository;
     public User saveUser(User user)
     {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRoles(Roles.ROLES_USER);
+        user.setRoles(Roles.ROLE_USER);
         return userRepository.save(user);
     }
     public  User getUserById(Integer id)

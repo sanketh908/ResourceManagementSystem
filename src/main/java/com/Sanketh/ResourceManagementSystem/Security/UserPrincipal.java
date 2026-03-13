@@ -5,6 +5,7 @@ import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 
@@ -21,7 +22,7 @@ private  final User user;
     @Override
     @NullMarked
     public Collection<? extends GrantedAuthority> getAuthorities() {
-       return List.of(()->user.getRoles().name());
+        return List.of(new SimpleGrantedAuthority(user.getRoles().name()));
     }
 
     @Override
