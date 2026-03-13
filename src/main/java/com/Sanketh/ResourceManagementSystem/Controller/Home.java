@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping("/home")
 public class Home {
     private final UserService userService;
@@ -26,7 +26,8 @@ public class Home {
     public String about() {
         return "This is a simple resource management system built with Spring Boot.";
     }
-    @PostMapping("/login")
+
+    @PostMapping("/register")
     public ResponseEntity<?> login(@RequestBody User user) {
         User usersave=userService.saveUser(user);
         return new ResponseEntity<>(usersave,HttpStatus.OK);

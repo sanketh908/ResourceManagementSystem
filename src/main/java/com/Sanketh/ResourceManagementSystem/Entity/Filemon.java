@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 @Entity
+@Table(name = "filemon")
 public class Filemon {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,7 +15,7 @@ public class Filemon {
     @Column(nullable = false)
     private String filetype;
     @Lob
-    @Column(nullable = false)
+    @Column(nullable = false,columnDefinition = "LONGBLOB")
     private byte[] content;
 
 
