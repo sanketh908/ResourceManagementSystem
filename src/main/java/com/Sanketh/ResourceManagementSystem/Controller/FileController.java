@@ -68,7 +68,7 @@ public class FileController {
     }
     @PostMapping("/addAdmin")
     public ResponseEntity<User> addAdmin(@RequestBody User user) {
-       user.setRoles(Roles.ADMIN);
+       user.setRoles(Roles.ROLES_ADMIN);
        User newuser= userService.saveUser(user);
        return new ResponseEntity<>(newuser, HttpStatus.OK);
     }
