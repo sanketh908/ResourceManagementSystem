@@ -7,6 +7,7 @@ The application implements Spring Security with Basic Authentication, ensuring t
 
 Authentication & User Management
 1. User Registration
+2. 
 
 Endpoint: POST /home/register
 
