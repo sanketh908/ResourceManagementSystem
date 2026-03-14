@@ -1,4 +1,4 @@
-Resource Management System
+<h1>Resource Management System</h1>
 A Resource Management System built using Spring Boot is a robust backend application designed for secure user registration, authentication, and comprehensive file management. The system allows users to upload, retrieve, and manage files while ensuring data integrity and security.
 
 The application implements Spring Security with Basic Authentication, ensuring that only authorized users can access sensitive endpoints. It demonstrates core backend principles such as RESTful API design, multipart file handling, password encryption (BCrypt), and role-based access control. This project serves as an excellent foundation for building scalable cloud storage or internal document management solutions.
