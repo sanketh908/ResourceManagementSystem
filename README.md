@@ -6,7 +6,9 @@ inside /home
 <br>
 -----> /register
 <br>
-[DRAG IMAGE 5 HERE]
+![image1](https://github.com/user-attachments/assets/cab3fa00-f0b6-416c-8336-6d5054d55489)
+
+
 <hr>
 
 <br>
