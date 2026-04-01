@@ -29,3 +29,6 @@ A Resource Management System built using Spring Boot is a robust backend applica
 ![image12](https://github.com/user-attachments/assets/7c1bcc07-ffdf-416c-b053-663621cabe84)
 
 ![image13](https://github.com/user-attachments/assets/da13ede8-47d2-4873-aef9-64a538501d3e)
+
+![image14](https://github.com/user-attachments/assets/9de06625-c219-4636-951f-d659d3e60abb)
+![image15](https://github.com/user-attachments/assets/65c7bb88-dd58-4992-a242-9a87af7b13d0)
